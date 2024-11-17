@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import Form from "@components/Form";
@@ -45,6 +46,7 @@ const EditPrompt = () => {
       setSubmitting(false);
     }
   };
+
   return (
     <Form
       type="Edit"
@@ -55,4 +57,11 @@ const EditPrompt = () => {
     />
   );
 };
-export default EditPrompt;
+
+const EditPromptWrapper = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <EditPrompt />
+  </Suspense>
+);
+
+export default EditPromptWrapper;
